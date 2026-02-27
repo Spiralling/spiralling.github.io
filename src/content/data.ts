@@ -51,101 +51,45 @@ export interface Draft {
   stage: DraftStage;
 }
 
-export const currentDrafts: Draft[] = [
+export interface DraftGroup {
+  label: string;
+  drafts: Draft[];
+}
+
+export const draftGroups: DraftGroup[] = [
   {
-    title: "Towards a Langlands Program for Collective Intelligence",
-    pdf: "/pdfs/towards-langlands-ci.pdf",
-    stage: "final",
+    label: "Collective Agency & Foundations",
+    drafts: [
+      { title: "Towards a Langlands Program for Collective Intelligence", pdf: "/pdfs/towards-langlands-ci.pdf", stage: "final" },
+      { title: "Open Questions in Collective Agent Foundations", pdf: "/pdfs/open-questions-caf.pdf", stage: "2nd" },
+      { title: "A Taxonomy of Agents From The Intentional Stance", pdf: "/pdfs/taxonomy-of-agents.pdf", stage: "2nd" },
+      { title: "A Natural History of Agency", pdf: "/pdfs/natural-history-agency.pdf", stage: "2nd" },
+      { title: "Scalar Properties of Agency", pdf: "/pdfs/scalar-agency.pdf", stage: "1st" },
+      { title: "Cultural Evolution of Cognitive Tools in Multi-Agent AI Systems", pdf: "/pdfs/cultural-evolution-cognitive.pdf", stage: "1st" },
+      { title: "Convergent Structures in Collective Intelligence", pdf: "/pdfs/convergent-structures.pdf", stage: "1st" },
+      { title: "CI Lab: A Functional Simulation Engine for Large-Scale CI Experiments", pdf: "/pdfs/ci-lab.pdf", stage: "1st" },
+    ],
   },
   {
-    title: "Procedural Alignment",
-    pdf: "/pdfs/procedural-alignment.pdf",
-    stage: "1st",
+    label: "Spectral Methods & Mathematical Foundations",
+    drafts: [
+      { title: "A Spectral Model of Collective Active Inference", pdf: "/pdfs/spectral-collective-ai.pdf", stage: "2nd" },
+      { title: "The Spectral Theory of Memetic Evolution", pdf: "/pdfs/spectral-memetic-evolution.pdf", stage: "1st" },
+      { title: "Markov Blanket Discovery via Minimum Cut", pdf: "/pdfs/markov-blanket-mincut.pdf", stage: "2nd" },
+      { title: "Agent Identification through TPMs & Markov Blankets", pdf: "/pdfs/agent-id-tpm.pdf", stage: "1st" },
+      { title: "Adaptive Resolution Modelling", pdf: "/pdfs/adaptive-resolution.pdf", stage: "1st" },
+    ],
   },
   {
-    title: "Active Inference and The Viable Systems Model",
-    pdf: "/pdfs/active-inference-vsm.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Open Questions in Collective Agent Foundations",
-    pdf: "/pdfs/open-questions-caf.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "Open Problems in AI-Mediated Epistemic Resilience",
-    pdf: "/pdfs/open-problems-epistemic.pdf",
-    stage: "1st",
-  },
-  {
-    title: "The Spectral Theory of Memetic Evolution",
-    pdf: "/pdfs/spectral-memetic-evolution.pdf",
-    stage: "1st",
-  },
-  {
-    title: "A Spectral Model of Collective Active Inference",
-    pdf: "/pdfs/spectral-collective-ai.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "A Model of Predictive Governance",
-    pdf: "/pdfs/predictive-governance.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "A Taxonomy of Agents From The Intentional Stance",
-    pdf: "/pdfs/taxonomy-of-agents.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "A Natural History of Agency",
-    pdf: "/pdfs/natural-history-agency.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "Cultural Evolution of Cognitive Tools in Multi-Agent AI Systems",
-    pdf: "/pdfs/cultural-evolution-cognitive.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Scalar Properties of Agency",
-    pdf: "/pdfs/scalar-agency.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Adaptive Resolution Modelling",
-    pdf: "/pdfs/adaptive-resolution.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Markov Blanket Discovery via Minimum Cut",
-    pdf: "/pdfs/markov-blanket-mincut.pdf",
-    stage: "2nd",
-  },
-  {
-    title: "Convergent Structures in Collective Intelligence",
-    pdf: "/pdfs/convergent-structures.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Modelling Bottlenecks in Decentralised Science",
-    pdf: "/pdfs/bottlenecks-desci.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Agent Identification through TPMs & Markov Blankets",
-    pdf: "/pdfs/agent-id-tpm.pdf",
-    stage: "1st",
-  },
-  {
-    title: "CI Lab: A Functional Simulation Engine for Large-Scale CI Experiments",
-    pdf: "/pdfs/ci-lab.pdf",
-    stage: "1st",
-  },
-  {
-    title: "Improving High Output Management through Predictions",
-    pdf: "/pdfs/improving-hom-predictions.pdf",
-    stage: "1st",
+    label: "Governance & Coordination",
+    drafts: [
+      { title: "Procedural Alignment", pdf: "/pdfs/procedural-alignment.pdf", stage: "1st" },
+      { title: "A Model of Predictive Governance", pdf: "/pdfs/predictive-governance.pdf", stage: "2nd" },
+      { title: "Active Inference and The Viable Systems Model", pdf: "/pdfs/active-inference-vsm.pdf", stage: "1st" },
+      { title: "Open Problems in AI-Mediated Epistemic Resilience", pdf: "/pdfs/open-problems-epistemic.pdf", stage: "1st" },
+      { title: "Modelling Bottlenecks in Decentralised Science", pdf: "/pdfs/bottlenecks-desci.pdf", stage: "1st" },
+      { title: "Improving High Output Management through Predictions", pdf: "/pdfs/improving-hom-predictions.pdf", stage: "1st" },
+    ],
   },
 ];
 

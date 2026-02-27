@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {
-  profile, publishedPapers, currentDrafts, lesswrongPosts,
+  profile, publishedPapers, draftGroups, lesswrongPosts,
   substacks, projects, background
 } from '../content/data';
 ---
@@ -65,22 +65,27 @@ import {
         </p>
       </section>
 
-      <!-- Current Drafts — compact 2-col grid -->
+      <!-- Current Drafts — grouped by theme -->
       <section>
         <h2>Current Drafts</h2>
-        <div class="draft-grid">
-          {currentDrafts.map((draft) => (
-            <a class="draft-card" href={draft.pdf} target="_blank" rel="noopener noreferrer">
-              <span class="card-title">{draft.title}</span>
-              <div class="card-meta">
-                <span class={`draft-stage ${draft.stage === 'final' ? 'final' : ''}`}>
-                  {draft.stage === 'final' ? 'Final draft' : draft.stage === '2nd' ? '2nd draft' : '1st draft'}
-                </span>
-                <span class="card-pdf">PDF</span>
-              </div>
-            </a>
-          ))}
-        </div>
+        {draftGroups.map((group) => (
+          <div class="draft-group">
+            <h3 class="draft-group-label">{group.label}</h3>
+            <div class="draft-grid">
+              {group.drafts.map((draft) => (
+                <a class="draft-card" href={draft.pdf} target="_blank" rel="noopener noreferrer">
+                  <span class="card-title">{draft.title}</span>
+                  <div class="card-meta">
+                    <span class={`draft-stage ${draft.stage === 'final' ? 'final' : ''}`}>
+                      {draft.stage === 'final' ? 'Final draft' : draft.stage === '2nd' ? '2nd draft' : '1st draft'}
+                    </span>
+                    <span class="card-pdf">PDF</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
       </section>
 
       <!-- Projects -->
