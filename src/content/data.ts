@@ -28,8 +28,8 @@ export interface Paper {
 
 export const publishedPapers: Paper[] = [
   {
-    title: "Democratic Mechanisms Under Pressure: An LLM Simulation Study of Organizational Resilience",
-    description: "Master's thesis — simulating how democratic governance mechanisms hold up under adversarial conditions using LLM-based agents.",
+    title: "Red Teaming Democracy: An LLM Simulation of Institutional Resilience Under Adversarial Pressure",
+    description: "Bachelor's thesis — simulating how democratic governance mechanisms hold up under adversarial conditions using LLM-based agents.",
     status: "published",
     year: 2025,
     url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=uJLG7dcAAAAJ&citation_for_view=uJLG7dcAAAAJ:u5HHmVD_uO8C",
