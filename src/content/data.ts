@@ -32,12 +32,7 @@ export const publishedPapers: Paper[] = [
     description: "Master's thesis — simulating how democratic governance mechanisms hold up under adversarial conditions using LLM-based agents.",
     status: "published",
     year: 2025,
-  },
-  {
-    title: "A Langlands Program for Collective Intelligence",
-    description: "A mathematical framework bridging game theory, social physics, and collective intelligence through categorical foundations.",
-    status: "draft",
-    year: 2025,
+    url: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=uJLG7dcAAAAJ&citation_for_view=uJLG7dcAAAAJ:u5HHmVD_uO8C",
   },
 ];
 
