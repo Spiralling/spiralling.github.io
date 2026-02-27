@@ -25,3 +25,9 @@ dist-ssr
 
 # Ai instructions
 *CLAUDE.md
+
+# Astro
+.astro/
+
+# Overleaf source zips
+src/pdfs/
