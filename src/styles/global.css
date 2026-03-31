@@ -419,6 +419,13 @@ footer {
   margin-top: 0.5rem;
 }
 
+.disclaimer {
+  font-size: 0.78rem;
+  font-style: italic;
+  opacity: 0.65;
+  margin-bottom: 1rem;
+}
+
 /* Draft groups */
 .draft-group {
   margin-bottom: 1.25rem;
