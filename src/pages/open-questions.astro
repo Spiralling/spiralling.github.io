@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile } from '../content/data';
+import { areas, openQuestionsMeta as meta } from '../content/open-questions';
+
+const description = 'The questions I am actually stuck on, from collective agent foundations to adaptive institutions.';
+---
+
+<Layout title={`${meta.title} · ${profile.name}`} description={description}>
+  <nav class="crumb">
+    <a href="/">{profile.name}</a>
+    <span aria-hidden="true">/</span>
+    <span>{meta.title}</span>
+  </nav>
+
+  <header class="oq-hero">
+    <h1>{meta.title}</h1>
+    <p class="oq-updated">Updated {meta.updated}</p>
+    <p class="oq-intro">{meta.intro}</p>
+    <p class="oq-order">{meta.order}</p>
+  </header>
+
+  <ol class="toc">
+    {areas.map((area, i) => (
+      <li>
+        <a href={`#${area.id}`}>
+          <span class="toc-num">{i + 1}</span>
+          <span>{area.name}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  {areas.map((area, i) => (
+    <section class="area" id={area.id}>
+      <h2><span class="area-num">{i + 1}</span>{area.name}</h2>
+      {area.intro && <p class="area-intro">{area.intro}</p>}
+      <ol class="questions">
+        {area.questions.map((q, j) => (
+          <li class="question" id={`${i + 1}-${j + 1}`}>
+            <a class="q-num" href={`#${i + 1}-${j + 1}`} aria-label={`Question ${i + 1}.${j + 1}`}>{i + 1}.{j + 1}</a>
+            <div class="q-body">
+              <p><strong>{q.lead}</strong> {q.body}</p>
+              {q.pointers && (
+                <p class="q-pointers">
+                  <span class="q-pointers-label">Where I've started:</span>
+                  {q.pointers.map((p, k) => (
+                    <>
+                      <a href={p.url} target={p.url.startsWith('http') ? '_blank' : undefined} rel={p.url.startsWith('http') ? 'noopener noreferrer' : undefined}>{p.label}</a>{k < q.pointers!.length - 1 && <span class="sep"> · </span>}
+                    </>
+                  ))}
+                </p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+
+  <section class="closing">
+    <h2>{meta.closing.title}</h2>
+    <p>{meta.closing.body}</p>
+    <p><a href={`mailto:${profile.links.email}`}>{profile.links.email}</a></p>
+  </section>
+</Layout>
+
+<style>
+  /* Reuses the site tokens from global.css. Body text stays serif; labels use the site's system sans. */
+  .crumb {
+    display: flex;
+    gap: 0.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-bottom: 2.5rem;
+  }
+
+  .crumb a {
+    color: var(--text-tertiary);
+  }
+
+  .crumb a:hover {
+    color: var(--color-primary);
+  }
+
+  .oq-hero {
+    max-width: 640px;
+    margin-bottom: 2.5rem;
+  }
+
+  .oq-hero h1 {
+    font-size: 1.9rem;
+    margin-bottom: 0.35rem;
+    text-wrap: balance;
+  }
+
+  .oq-updated {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.78rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1.25rem;
+  }
+
+  .oq-intro {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.6rem;
+  }
+
+  .oq-order {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-tertiary);
+    font-style: italic;
+  }
+
+  /* Contents: the numbering is real information (foundations -> practice), so it is shown. */
+  .toc {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.35rem 2rem;
+    max-width: 640px;
+    margin-bottom: 3.5rem;
+    padding: 1rem 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+  }
+
+  .toc a {
+    display: flex;
+    gap: 0.7rem;
+    align-items: baseline;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.86rem;
+    color: var(--text);
+    line-height: 1.4;
+    padding: 0.15rem 0;
+  }
+
+  .toc a:hover {
+    color: var(--color-primary);
+  }
+
+  .toc-num {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary);
+    opacity: 0.7;
+    min-width: 1ch;
+  }
+
+  .area {
+    max-width: 680px;
+    margin-bottom: 3.25rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  /* Override the global small-caps h2: area names are real headings here. */
+  .area h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--text);
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 0.55rem;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    text-wrap: balance;
+  }
+
+  .area-num {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .area-intro {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .questions {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 0.5rem;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 1.5rem;
+  }
+
+  .question:target {
+    background: var(--color-primary-faint);
+  }
+
+  .q-num {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.76rem;
+    color: var(--text-tertiary);
+    padding-top: 0.25rem;
+  }
+
+  .q-num:hover,
+  .q-num:focus-visible {
+    color: var(--color-primary);
+  }
+
+  .q-body p {
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  .q-body strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .q-pointers {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 0.78rem !important;
+    line-height: 1.6 !important;
+    margin-top: 0.4rem;
+    color: var(--text-tertiary) !important;
+  }
+
+  .q-pointers-label {
+    margin-right: 0.4rem;
+  }
+
+  .q-pointers a {
+    border-bottom: 1px solid var(--color-primary-border);
+  }
+
+  .sep {
+    color: var(--text-tertiary);
+  }
+
+  .closing {
+    max-width: 640px;
+    margin-top: 1rem;
+  }
+
+  .closing p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 0.6rem;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--color-primary-light);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 720px) {
+    .toc {
+      grid-template-columns: 1fr;
+    }
+
+    .oq-hero h1 {
+      font-size: 1.55rem;
+    }
+
+    .question {
+      grid-template-columns: 2.2rem 1fr;
+    }
+  }
+</style>
